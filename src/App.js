@@ -6,7 +6,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'https://demo.saleor.io/graphql/', // Replace with your GraphQL API endpoint
+  uri: 'https://tokengifts-dev.saleor.cloud/graphql/', // Replace with your GraphQL API endpoint
   cache: new InMemoryCache(),
 });
 
