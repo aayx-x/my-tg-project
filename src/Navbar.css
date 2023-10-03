@@ -1,0 +1,73 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #000000; /* Background color for the navbar */
+  color: #fff; /* Text color for navbar items */
+  padding: 50px 0; /* Add padding to the top and bottom */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.logo {
+  max-width: 1000px; /* Adjust the logo's maximum width */
+}
+
+ul {
+  list-style: none; /* Remove bullet points from the list */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+}
+
+li {
+  margin-right: 20px; /* Add spacing between navbar items */
+  font-size: 18px; /* Adjust the font size of navbar items */
+}
+
+li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+a {
+  text-decoration: none; /* Remove underlines from links */
+  color: #fff; /* Text color for links */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+a:hover {
+  color: #00bcd4; /* Change text color on hover */
+}
+
+.active {
+  font-weight: bold; /* Highlight the active category */
+}
+
+.products-container {
+  margin-top: 20px; /* Add spacing between navbar and products */
+  display: flex;
+  flex-wrap: wrap; /* Allow products to wrap to the next line if needed */
+  gap: 20px; /* Add spacing between product items */
+  justify-content: center; /* Center-align product items */
+}
+
+.product-item {
+  background-color: #fff; /* Background color for product items */
+  border: 1px solid #ddd; /* Add a border to product items */
+  border-radius: 5px; /* Add border radius */
+  padding: 20px; /* Adjust padding for product items */
+  width: calc(33.33% - 20px); /* Adjust the width of product items */
+  text-align: center;
+  transition: transform 0.3s ease; /* Smooth transform transition on hover */
+}
+
+.product-item:hover {
+  transform: scale(1.05); /* Scale up product items on hover */
+}
+
+.product-image {
+  max-width: 100%; /* Set the maximum width for product images */
+  height: auto; /* Maintain aspect ratio for images */
+}
