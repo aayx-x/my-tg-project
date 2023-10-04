@@ -26,8 +26,8 @@ function Products({ categoryId }) {
   }
 
   const buttonText = sortByRating
-    ? 'Sort by : default'
-    : 'Sort by : highest rating';
+    ? 'Sort by : Default'
+    : 'Sort by : Highest Rating';
 
   const handleSortByRating = () => {
     setSortByRating(!sortByRating);
