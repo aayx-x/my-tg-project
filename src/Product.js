@@ -1,12 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS_BY_CATEGORY_ID } from './config';
-import './Product.css'; // Import the CSS file
+import { GET_PRODUCTS_BY_CATEGORY_ID, GET_ALL_PRODUCTS } from './config'; // Import the queries
 
 function Products({ categoryId }) {
-  const { loading, error, data } = useQuery(GET_PRODUCTS_BY_CATEGORY_ID, {
-    variables: { categoryId },
-  });
+  const { loading, error, data } = useQuery(
+    categoryId ? GET_PRODUCTS_BY_CATEGORY_ID : GET_ALL_PRODUCTS, // Use the appropriate query
+    {
+      variables: { categoryId },
+    }
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) {
@@ -14,22 +16,27 @@ function Products({ categoryId }) {
     return <p>Error :(</p>;
   }
 
-  if (data && data.category && data.category.products && data.category.products.edges) {
-    const products = data.category.products.edges || [];
+  if (data) {
+    const products = categoryId
+      ? data.category.products.edges || []
+      : data.products.edges || []; // Check if categoryId is provided
 
     return (
-      <div className="product-container">
+      <div>
+        {categoryId ? (
+          <h2>All Products</h2> // Display "All Products" only when categoryId is provided
+        ) : null}
         {products.map((product) => (
-          <div className="product-card" key={product.node.id}>
+          <div key={product.node.id}>
+            <h3>{product.node.name}</h3>
+            <p>{product.node.description}</p>
             {product.node.images.length > 0 && (
               <img
-                className="product-image"
                 src={product.node.images[0].url}
                 alt={product.node.name}
+                width="250" // Adjust the image size as needed
               />
             )}
-            <h3 className="product-name">{product.node.name}</h3>
-            <p className="product-description">{product.node.description}</p>
           </div>
         ))}
       </div>

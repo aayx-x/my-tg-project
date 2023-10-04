@@ -37,3 +37,20 @@ export const GET_PRODUCTS_BY_CATEGORY_ID = gql`
     }
   }
 `;
+
+export const GET_ALL_PRODUCTS = gql`
+  query GetAllProducts {
+    products(first: 50, channel: "default-channel") {
+      edges {
+        node {
+          id
+          name
+          images {
+            id
+            url
+          }
+        }
+      }
+    }
+  }
+`;
