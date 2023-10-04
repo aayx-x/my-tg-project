@@ -1,5 +1,4 @@
 // config.js
-
 import { gql } from '@apollo/client';
 
 // Define your GraphQL query for fetching categories
@@ -54,3 +53,22 @@ export const GET_ALL_PRODUCTS = gql`
     }
   }
 `;
+
+export const GET_ALL_PRODUCTS_ASCENDING_RATING = gql`
+  query GetAllProductsAscendingRating {
+    products(first: 100, channel: "default-channel", sortBy: { field: RATING, direction: ASC}) {
+      edges {
+        node {
+          id
+          name
+          images {
+            id
+            url
+          }
+        }
+      }
+    }
+  }
+`;
+
+    

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS_BY_CATEGORY_ID, GET_ALL_PRODUCTS } from './config'; // Import the queries
+import { GET_PRODUCTS_BY_CATEGORY_ID, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_ASCENDING_RATING } from './config'; // Import the queries
 import './Product.css';
+
 function Products({ categoryId }) {
+  const [sortByRating, setSortByRating] = useState(false);
+
+  useEffect(() => {
+    setSortByRating(false); // Reset sortByRating when the categoryId changes
+  }, [categoryId]);
+
   const { loading, error, data } = useQuery(
-    categoryId ? GET_PRODUCTS_BY_CATEGORY_ID : GET_ALL_PRODUCTS, // Use the appropriate query
+    sortByRating
+      ? GET_ALL_PRODUCTS_ASCENDING_RATING
+      : categoryId ? GET_PRODUCTS_BY_CATEGORY_ID : GET_ALL_PRODUCTS,
     {
       variables: { categoryId },
     }
@@ -16,18 +25,32 @@ function Products({ categoryId }) {
     return <p>Error :(</p>;
   }
 
+  const buttonText = sortByRating
+    ? 'Sort by : highest rating'
+    : 'Sort by : default';
+
+  const handleSortByRating = () => {
+    setSortByRating(!sortByRating);
+  };
+
   if (data) {
-    const products = categoryId
-      ? data.category.products.edges || []
-      : data.products.edges || []; // Check if categoryId is provided
+    const products = sortByRating
+      ? data.products.edges || [] // Use this structure for sorting by rating
+      : categoryId
+      ? data.category.products.edges || [] // Use this structure for category-specific view
+      : data.products.edges || []; // Use this structure for the default view
 
     return (
       <div>
-        {categoryId ? null : <h2>All Products</h2>} {/* Display "All Products" only when no category is selected */}
+        {categoryId ? null : <h2>All Products</h2>}
+        {categoryId ? null : (
+          <button className="sort-button" onClick={handleSortByRating}>
+            {buttonText}
+          </button>
+        )}
         <div className="product-container">
           {products.map((product) => (
             <div className="product-card" key={product.node.id}>
-              {/* Check if images are available before rendering */}
               {product.node.images && product.node.images.length > 0 && (
                 <img
                   src={product.node.images[0].url}
