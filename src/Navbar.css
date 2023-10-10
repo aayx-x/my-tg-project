@@ -1,73 +1,123 @@
 /* Navbar.css */
 
+/* Set the width and height of the navbar */
 .navbar {
-  background-color: #000000; /* Background color for the navbar */
-  color: #fff; /* Text color for navbar items */
-  padding: 50px 0; /* Add padding to the top and bottom */
+  background-color: #000000;
+  padding: 0; /* Remove top and bottom padding */
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  flex-direction: column; /* Display items in a column layout */
+  justify-content: flex-start; /* Align items at the top */
+  align-items: center; /* Center items horizontally */
+  position: fixed;
+  bottom: 0;
+  left: 50%; /* Center the navbar horizontally */
+  transform: translateX(-50%); /* Adjust to center */
+  width: 600px; /* Set the initial width to 600px */
+  height: 80vh; /* Set the initial height to 80% of the viewport height */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  white-space: nowrap; /* Prevent button wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  transition: height 0.3s ease; /* Add smooth transition for height changes */
 }
 
-.logo {
-  max-width: 1000px; /* Adjust the logo's maximum width */
-}
-
+/* Style for the list of navbar items */
 ul {
-  list-style: none; /* Remove bullet points from the list */
+  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+  flex-wrap: wrap;
 }
 
+/* Style for individual navbar items */
 li {
-  margin-right: 20px; /* Add spacing between navbar items */
-  font-size: 18px; /* Adjust the font size of navbar items */
-}
-
-li:last-child {
-  margin-right: 0; /* Remove margin from the last item */
-}
-
-a {
-  text-decoration: none; /* Remove underlines from links */
-  color: #fff; /* Text color for links */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-a:hover {
-  color: #00bcd4; /* Change text color on hover */
-}
-
-.active {
-  font-weight: bold; /* Highlight the active category */
-}
-
-.products-container {
-  margin-top: 20px; /* Add spacing between navbar and products */
-  display: flex;
-  flex-wrap: wrap; /* Allow products to wrap to the next line if needed */
-  gap: 20px; /* Add spacing between product items */
-  justify-content: center; /* Center-align product items */
-}
-
-.product-item {
-  background-color: #fff; /* Background color for product items */
-  border: 1px solid #ddd; /* Add a border to product items */
-  border-radius: 5px; /* Add border radius */
-  padding: 20px; /* Adjust padding for product items */
-  width: calc(33.33% - 20px); /* Adjust the width of product items */
+  width: 53.8px;
+  height: 24.5px;
+  font-size: 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 17px 10px;
+  border-radius: 10px;
   text-align: center;
-  transition: transform 0.3s ease; /* Smooth transform transition on hover */
+  color: #fff; /* White text color */
 }
 
-.product-item:hover {
-  transform: scale(1.05); /* Scale up product items on hover */
+/* Hover effect for navbar items */
+li:hover {
+  background-color: #333;
+  color: #00bcd4;
 }
 
-.product-image {
-  max-width: 100%; /* Set the maximum width for product images */
-  height: auto; /* Maintain aspect ratio for images */
+/* Style for the active category */
+.active {
+  font-weight: bold;
+}
+
+/* Styling for the products container */
+.products-container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  padding: 10px;
+  transition: height 0.3s ease; /* Add smooth transition for height changes */
+  max-height: 70vh; /* Set the maximum height to 70% of the viewport height */
+}
+
+/* Hide scrollbar in Webkit browsers */
+ul::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Hide scrollbar in Webkit browsers */
+}
+
+/* Hide scrollbar in IE and Edge */
+ul {
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar in Firefox */
+ul {
+  scrollbar-width: none;
+}
+/* Styling for the products container */
+.products-container {
+  position: absolute;
+  width: 100%; /* Set the width to 100% to fill the available space */
+  height: 400px; /* Set a fixed height for the product area */
+  background-color: #fff; /* White background color for products area */
+  left: 0; /* Adjusted to fit below the navbar */
+  bottom: 0; /* Adjusted to fit below the navbar */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column; /* Adjust for a fixed height */
+  align-items: center;
+  padding: 10px;
+  transition: height 0.3s ease; /* Add smooth transition for height changes */
+}
+
+/* Adjust the initial transform and transition properties */
+.navbar {
+  /* ... (existing styles) */
+  transform: translateY(100%); /* Start below the viewport */
+  transition: transform 0.5s ease; /* Transition transform property */
+}
+
+/* Apply the popup animation when the .popup class is active */
+.popup.active {
+  transform: translateY(0%); /* Move the navbar to its original position */
+}
+.navbar {
+  /* ... (existing styles) */
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }

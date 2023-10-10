@@ -3,6 +3,8 @@
 import React from 'react';
 import Navbar from './Navbar'; // Import the Navbar component
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import './App.css';
+import logo from './tg.png';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
@@ -14,6 +16,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
+        <img
+          src={logo} // Replace with the actual path to your logo image
+          alt="Your Logo"
+          className="logo"
+          
+        />
+        
         <Navbar /> {/* Include the Navbar component */}
       </div>
     </ApolloProvider>

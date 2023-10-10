@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+// Products.js
+
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCTS_BY_CATEGORY_ID, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_ASCENDING_RATING } from './config'; // Import the queries
 import './Product.css';
 
 function Products({ categoryId }) {
   const [sortByRating, setSortByRating] = useState(false);
-
-  useEffect(() => {
-    setSortByRating(false); // Reset sortByRating when the categoryId changes
-  }, [categoryId]);
+  const [buttonText, setButtonText] = useState('Sort by: Highest Rating');
 
   const { loading, error, data } = useQuery(
     sortByRating
@@ -25,45 +24,37 @@ function Products({ categoryId }) {
     return <p>Error :(</p>;
   }
 
-  const buttonText = sortByRating
-    ? 'Sort by : Default'
-    : 'Sort by : Highest Rating';
-
   const handleSortByRating = () => {
     setSortByRating(!sortByRating);
+    setButtonText(sortByRating ? 'Sort by: Highest Rating' : 'Sort by: Default');
   };
 
   if (data) {
-    const products = sortByRating
-      ? data.products.edges || [] // Use this structure for sorting by rating
-      : categoryId
-      ? data.category.products.edges || [] // Use this structure for category-specific view
-      : data.products.edges || []; // Use this structure for the default view
+    const products = categoryId
+      ? data.category.products.edges || []
+      : data.products.edges || [];
 
     return (
-      <div>
-        {categoryId ? null : <h2>All Products</h2>}
-        {categoryId ? null : (
+      <div className="product-container">
+        {!categoryId && (
           <button className="sort-button" onClick={handleSortByRating}>
             {buttonText}
           </button>
         )}
-        <div className="product-container">
-          {products.map((product) => (
-            <div className="product-card" key={product.node.id}>
-              {product.node.images && product.node.images.length > 0 && (
-                <img
-                  src={product.node.images[0].url}
-                  alt={product.node.name}
-                  className="product-image"
-                />
-              )}
-              <div className="product-details">
-                <h3 className="product-name">{product.node.name}</h3>
-              </div>
+        {products.map((product) => (
+          <div className="product-card" key={product.node.id}>
+            {product.node.images && product.node.images.length > 0 && (
+              <img
+                src={product.node.images[0].url}
+                alt={product.node.name}
+                className="product-image"
+              />
+            )}
+            <div className="product-details">
+              <h3 className="product-name">{product.node.name}</h3>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     );
   }
