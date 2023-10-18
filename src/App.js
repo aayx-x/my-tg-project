@@ -4,7 +4,7 @@ import React from 'react';
 import Navbar from './Navbar'; // Import the Navbar component
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import './App.css';
-import logo from './tg.png';
+import logo from './logo1.png';
 
 // Initialize Apollo Client
 const client = new ApolloClient({

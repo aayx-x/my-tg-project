@@ -1,26 +1,22 @@
-/* Navbar.css */
-
-/* Set the width and height of the navbar */
 .navbar {
   background-color: #000000;
-  padding: 0; /* Remove top and bottom padding */
+  padding: 0;
   display: flex;
-  flex-direction: column; /* Display items in a column layout */
-  justify-content: flex-start; /* Align items at the top */
-  align-items: center; /* Center items horizontally */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   position: fixed;
   bottom: 0;
-  left: 50%; /* Center the navbar horizontally */
-  transform: translateX(-50%); /* Adjust to center */
-  width: 600px; /* Set the initial width to 600px */
-  height: 80vh; /* Set the initial height to 80% of the viewport height */
+  left: 0; /* Change this to 0 to align with the left edge of the page */
+  width: 45%; 
+  height: 72vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  white-space: nowrap; /* Prevent button wrapping */
-  overflow-x: auto; /* Enable horizontal scrolling if needed */
-  transition: height 0.3s ease; /* Add smooth transition for height changes */
+  white-space: nowrap;
+  overflow-x: hidden; /* Hide horizontal scrolling */
+  transition: height 0.3s ease;
 }
 
 /* Style for the list of navbar items */
@@ -34,10 +30,10 @@ ul {
 
 /* Style for individual navbar items */
 li {
-  width: 53.8px;
+  width: 58px;
   height: 24.5px;
   font-size: 12px;
-  margin-right: 5px;
+  margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   padding: 17px 10px;

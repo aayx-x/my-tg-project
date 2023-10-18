@@ -26,6 +26,7 @@ export const GET_PRODUCTS_BY_CATEGORY_ID = gql`
           node {
             id
             name
+            description 
             images {
               id
               url
