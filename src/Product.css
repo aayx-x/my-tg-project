@@ -63,7 +63,7 @@ body {
   background-color: #ffffff;
   color: #333;
   display: flex;
-  flex-wrap: wrap;
+  flex-grow: 1;
   gap: 20px;
   justify-content: space-between;
   margin-top: 72px;
