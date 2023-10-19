@@ -67,6 +67,7 @@ body {
   margin-top: 72px;
   padding: 20px;
   box-sizing: border-box;
+  height: 180px; /* Add a fixed height of 300 pixels */
 }
 
 .product-container .product-card {
@@ -78,6 +79,7 @@ body {
   width: 50%; /* Full width to stack cards */
   margin-bottom: 20px; /* Add margin to separate each product card */
   transition: transform 0.3s ease;
+  
 }
 
 .product-container .product-card:hover {
