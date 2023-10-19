@@ -67,7 +67,7 @@ body {
   margin-top: 72px;
   padding: 20px;
   box-sizing: border-box;
-  height: 180px; /* Add a fixed height of 300 pixels */
+  height: 250px; /* Add a fixed height of 300 pixels */
 }
 
 .product-container .product-card {
